@@ -1,0 +1,43 @@
+# Example configuration file for pypicacher-rs
+# Run with: pypicacher-rs --config config.example.toml
+# CLI flags and PYPICACHER_* environment variables override values here.
+
+listen = "0.0.0.0:8080"
+cache_dir = "./cache"
+
+# Maximum disk cache size (supports B, K/KiB/KB, M/MiB/MB, G/GiB/GB, T/TiB/TB)
+max_cache_size = "10GiB"
+
+# Proactive LRU eviction watermarks (prunes oldest by access time when quota runs low)
+evict_high_watermark = 0.95
+evict_low_watermark = 0.85
+
+# Upstream PyPI Simple Repository URL
+upstream = "https://pypi.org/simple/"
+
+# Optional upstream packages base URL mapped to /packages/
+# (auto-detected as https://files.pythonhosted.org/packages/ for pypi.org)
+# upstream_packages_url = "https://files.pythonhosted.org/packages/"
+
+# Optional extra allowed upstream hosts for /proxy/ routes
+# allowed_upstream_hosts = ["mirror.internal:8443"]
+
+# Optional upstream HTTP / HTTPS / SOCKS5 proxy (falls back to HTTP_PROXY/HTTPS_PROXY env vars)
+# upstream_proxy = "http://proxy.corp.lan:3128"
+# upstream_proxy = "http://user:password@proxy.corp.lan:3128"
+# no_proxy = "localhost,127.0.0.1,.corp.lan"
+no_system_proxy = false
+
+# Optional custom PEM CA certificate bundle (e.g. corporate proxy root CA)
+# ca_cert = "/etc/ssl/certs/corp-proxy-ca.pem"
+danger_accept_invalid_certs = false
+
+# In-memory /simple/<project>/ index cache settings
+index_ttl = "60s"
+index_cache_max_bytes = "128MiB"
+
+# Upstream network timeouts
+connect_timeout = "30s"
+read_timeout = "60s"
+
+log_level = "info"
